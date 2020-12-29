@@ -1,3 +1,5 @@
+import { ISSUES, KFN } from 'assets/constants'
+
 export const state = () => ({
   layout: {
     clipped: true,
@@ -10,8 +12,9 @@ export const state = () => ({
         to: '/'
       }
     ],
-    title: 'Kiara Family News'
-  }
+    title: KFN
+  },
+  issues: ISSUES
 })
 
 export const mutations = {

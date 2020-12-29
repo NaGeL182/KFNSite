@@ -7,6 +7,7 @@ export default {
   mounted() {
     $(this.$el).flipBook({
             pdfUrl:"pdf/KFN001.pdf",
+            lightBox:true
         });
   }
 }
