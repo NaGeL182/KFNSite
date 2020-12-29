@@ -1,4 +1,5 @@
 import colors from 'vuetify/es5/util/colors'
+const webpack = require("webpack");
 
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
@@ -17,7 +18,28 @@ export default {
       { hid: 'description', name: 'description', content: '' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: "stylesheet",
+        href:
+          "css/flipbook.style.css"
+      },
+      {
+        rel: "stylesheet",
+        href:
+          "css/font-awesome.css"
+      }
+    ],
+    script: [
+      {
+        src: "https://code.jquery.com/jquery-1.8.3.min.js",
+        type: "text/javascript"
+      },
+      {
+        src:
+          "js/flipbook.min.js",
+        type: "text/javascript"
+      }
     ]
   },
 
@@ -70,5 +92,8 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
+    externals: {
+      jquery: 'jQuery'
+    }
   }
 }

@@ -3,14 +3,11 @@
 </template>
 
 <script>
-import $ from 'flip-book'
 export default {
   mounted() {
-    $(this.$el).FlipBook(
-      {
-        pdf: 'pdfs/KFN001.pdf'
-      }
-    )
+    $(this.$el).flipBook({
+            pdfUrl:"pdf/KFN001.pdf",
+        });
   }
 }
 
