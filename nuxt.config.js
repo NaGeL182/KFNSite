@@ -93,8 +93,23 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-    externals: {
-      jquery: 'jQuery'
-    },
+    extend(config, {}) {
+      config.externals = {
+        jquery: 'jQuery'
+      }
+      config.module.rules.push(
+        {
+          test: /\.pdf$/i,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name].[ext]'
+              }
+            }
+          ]
+        }
+      )
+    }
   }
 }

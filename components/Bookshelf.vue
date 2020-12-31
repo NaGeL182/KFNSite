@@ -5,18 +5,7 @@
         v-for="(issue, key) in issues" :key="key"
         cols="4"
       >
-        <v-lazy>
-          <v-card
-          class="pa-4 ma-4"
-          elevation="2"
-          outlined
-          >
-            <v-img :src="issue.coversrc" />
-            <v-card-title>
-              {{issue.name}}
-            </v-card-title>
-          </v-card>
-        </v-lazy>
+        <pdf-reader v-bind:issue="issue"/>
       </v-col>
     </v-row>
   </v-container>
