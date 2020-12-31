@@ -2,7 +2,7 @@
   <v-app
   >
     <v-navigation-drawer
-      :mini-variant="drawer"
+      :value="drawer"
       :clipped="clipped"
       :absolute="!fixed"
       :fixed="fixed"
@@ -30,7 +30,7 @@
       fixed
       app
     >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-app-bar-nav-icon @click.stop="drawerToggle" />
       <v-toolbar-title v-text="title" />
     </v-app-bar>
     <v-main>
@@ -55,16 +55,26 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 export default {
-  data () {
-    return this.$store.state.layout
+
+  computed: {
+    ...mapState({
+      clipped: state => state.layout.clipped,
+      drawer: state => state.layout.drawer,
+      fixed: state => state.layout.fixed,
+      items: state => state.layout.items,
+      title: state => state.layout.title
+    })
   },
   methods: {
     themeToggle () {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark
       localStorage.setItem("darkTheme", this.$vuetify.theme.dark)
-    }
+    },
+    ...mapMutations([
+      'drawerToggle'
+    ])
   },
   mounted() {
     const theme = localStorage.getItem("darkTheme");

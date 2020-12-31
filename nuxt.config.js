@@ -1,5 +1,6 @@
 import colors from 'vuetify/es5/util/colors'
 const webpack = require("webpack");
+import { KFN } from "./assets/constants";
 
 export default {
   // Disable server-side rendering (https://go.nuxtjs.dev/ssr-mode)
@@ -10,8 +11,8 @@ export default {
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    titleTemplate: '%s - KFNSite',
-    title: 'KFNSite',
+    titleTemplate: '%s - ' + KFN,
+    title: KFN,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -92,8 +93,23 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-    externals: {
-      jquery: 'jQuery'
+    extend(config, {}) {
+      config.externals = {
+        jquery: 'jQuery'
+      }
+      config.module.rules.push(
+        {
+          test: /\.pdf$/i,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name].[ext]'
+              }
+            }
+          ]
+        }
+      )
     }
   }
 }
